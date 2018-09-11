@@ -30,9 +30,11 @@ public class ReadStudentDemo {
 			session.beginTransaction();			
 			
 			// save the student object
-			System.out.println("Saving the student...");
+			System.out.println("id before session save: " + tempStudent.getId());
+			System.out.print("session.save>>");
 			session.save(tempStudent);
-			
+			System.out.println("id after session save: " + tempStudent.getId());
+			System.out.println(tempStudent);
 			// commit the transaction
 			System.out.println("Commiting transaction...");
 			session.getTransaction().commit();
@@ -48,9 +50,8 @@ public class ReadStudentDemo {
 			
 			// retrieve student based on the id: primary key
 			System.out.println("\nGetting student with id: " + tempStudent.getId());
-			
+			System.out.print("Retrieving student via id>>");
 			Student myStudent = session.get(Student.class, tempStudent.getId());
-			
 			System.out.println("Get complete: " + myStudent);
 			
 			// commit the transaction
