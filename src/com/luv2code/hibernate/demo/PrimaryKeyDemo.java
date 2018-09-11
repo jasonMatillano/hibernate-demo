@@ -30,11 +30,25 @@ public class PrimaryKeyDemo {
 			System.out.println("Starting session...");
 			session.beginTransaction();			
 			
+			// id value before session save
+			System.out.println("Id values before session save:");
+			System.out.println(tempStudent1.getId());
+			System.out.println(tempStudent2.getId());
+			System.out.println(tempStudent3.getId());
+			System.out.println("");
+			
 			// save the student object
 			System.out.println("Saving the student...");
 			session.save(tempStudent1);
 			session.save(tempStudent2);
 			session.save(tempStudent3);
+			
+			// id value before session save
+			System.out.println("\nId values after session save:");
+			System.out.println(tempStudent1.getId());
+			System.out.println(tempStudent2.getId());
+			System.out.println(tempStudent3.getId());
+			System.out.println("");
 			
 			// commit the transaction
 			System.out.println("Commiting transaction...");
