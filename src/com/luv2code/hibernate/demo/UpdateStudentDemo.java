@@ -24,7 +24,8 @@ public class UpdateStudentDemo {
 			
 			// now get a new session and start transaction
 			session = factory.getCurrentSession();
-			session.beginTransaction();
+			session
+				.beginTransaction();
 			
 			// retrieve student based on the id: primary key
 			System.out.println("\nGetting student with id: " + studentId);
@@ -44,11 +45,13 @@ public class UpdateStudentDemo {
 			session.beginTransaction();
 			
 			// write a query for bulk update 
-			session.createQuery("update Student set email='foo@gmail.com'")
+			session
+				.createQuery("update Student set email='foo@gmail.com'")
 				.executeUpdate();
 			
-			session.createQuery("update Student s set email='foo@gmail2.com',first_name='betty' where s.id='1'")
-			.executeUpdate();
+			session
+				.createQuery("update Student s set email='foo@gmail2.com',first_name='betty' where s.id='1'")
+				.executeUpdate();
 			
 			Student myStudent2 = session.get(Student.class, 1);
 			System.out.println(myStudent2);

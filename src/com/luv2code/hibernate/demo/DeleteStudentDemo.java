@@ -6,10 +6,10 @@ import org.hibernate.cfg.Configuration;
 
 import com.luv2code.hibernate.demo.entity.Student;
 
-public class CreateStudentDemo {
+public class DeleteStudentDemo {
 
 	public static void main(String[] args) {
-		
+			
 		// create session factory
 		SessionFactory factory = new Configuration()
 						.configure("hibernate.cfg.xml")
@@ -20,23 +20,27 @@ public class CreateStudentDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			// start transaction
-			System.out.println("Starting session...");
-			session.beginTransaction();			
+			int studentId = 6;
 			
-			// create a student object
-			System.out.println("Creating a new student object...");
-			Student tempStudent = new Student("Jason1", "Wall", "jasluv2code.com");
-			System.out.println("Student value before save: " + tempStudent);
+			// now get a new session and start transaction
+			session = factory.getCurrentSession();
+			session.beginTransaction();
 			
-			// save the student object
-			System.out.println("Saving the student...");
-			session.save(tempStudent);
-			System.out.println("Student value after save: " + tempStudent);
+			// retrieve student based on the primary key 
+			Student myStudent = session.get(Student.class, studentId);
+			
+			// delete the student
+//			System.out.println(myStudent);
+//			session.delete(myStudent);
+			
+			// delete using query
+			session
+				.createQuery("delete from Student s where s.id='8'")
+				.executeUpdate();
 			
 			// commit the transaction
-			System.out.println("Commiting transaction...");
 			session.getTransaction().commit();
+			System.out.println(myStudent);
 			
 			System.out.println("Done!");
 			
